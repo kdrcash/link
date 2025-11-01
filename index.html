@@ -1,144 +1,125 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. CA$H 서비스 대시보드</title>
-    <!-- Tailwind CSS CDN 로드 --><script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* 기본 폰트 설정 */
-        :root {
-            font-family: 'Inter', sans-serif;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dr. CA$H 서비스 대시보드</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        /* 배경 스타일 (애니메이션 제거, 정적 그라데이션) */
-        body {
-            background: linear-gradient(135deg, #1e2a47, #0f1628, #1e2a47); /* 정적 그라데이션 유지 */
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            color: #e2e8f0;
-        }
+  <!-- ===== Open Graph & Twitter Meta Tags ===== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kdrcash.github.io/link/" />
+  <meta property="og:title" content="Dr. CA$H 서비스 대시보드" />
+  <meta property="og:description" content="필요한 서비스로 바로 이동하세요" />
+  <meta property="og:image" content="https://raw.githubusercontent.com/kdrcash/paycal1/refs/heads/main/%EB%8B%A5%ED%84%B0%EC%BA%90%EC%8B%9C%20%EB%B0%B1%ED%84%B0).png" />
+  <meta property="og:site_name" content="Dr.CASH Dashboard" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Dr. CA$H 서비스 대시보드" />
+  <meta name="twitter:description" content="필요한 서비스로 바로 이동하세요" />
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/kdrcash/paycal1/refs/heads/main/%EB%8B%A5%ED%84%B0%EC%BA%90%EC%8B%9C%20%EB%B0%B1%ED%84%B0).png" />
 
-        /* 글래스모피즘 컨테이너 스타일 (블러 완화, GPU 가속 유지) */
-        .glass-container {
-            background-color: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(12px); /* 블러 강도 20px -> 12px로 완화 */
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            transform: translateZ(0); /* GPU 가속 유지 */
-        }
+  <!-- ===== 기본 스타일 정의 ===== -->
+  <style>
+    /* 폰트 및 레이아웃 기본 설정 */
+    :root { font-family: 'Inter', sans-serif; }
+    body { background: linear-gradient(135deg, #1e2a47, #0f1628, #1e2a47); display: flex; flex-direction: column; min-height: 100vh; color: #e2e8f0; }
 
-        /* 글래스모피즘 카드 스타일 (블러 제거, GPU 가속 유지) */
-        .glass-card {
-            background-color: rgba(255, 255, 255, 0.05); /* 투명도 유지 */
-            /* backdrop-filter: blur(10px); 카드 블러 효과 제거 */
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transform: translateZ(0); /* GPU 가속 유지 */
-        }
+    /* Glassmorphism 컨테이너 */
+    .glass-container { background-color: rgba(255, 255, 255, 0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); transform: translateZ(0); }
 
-        .glass-card:hover {
-            background-color: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
-        }
-    </style>
-
-    <!-- Open Graph (SNS 공유 메타태그) --><meta property="og:type" content="website">
-<meta property="og:url" content="https://kdrcash.github.io/link/">
-<meta property="og:title" content="Dr. CA$H 서비스 대시보드">
-<meta property="og:description" content="필요한 서비스로 바로 이동하세요">
-<meta property="og:image" content="https://raw.githubusercontent.com/kdrcash/paycal1/refs/heads/main/%EB%8B%A5%ED%84%B0%EC%BA%90%EC%8B%9C%20%EB%B0%B0%EB%84%88(%EB%B0%B1%ED%84%B0).png">
-<meta property="og:site_name" content="Dr.CASH Dashboard">
-<meta property="og:locale" content="ko_KR">
-
-<!-- Twitter (X) 전용 메타태그 --><meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Dr. CA$H 서비스 대시보드">
-<meta name="twitter:description" content="필요한 서비스로 바로 이동하세요">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/kdrcash/paycal1/refs/heads/main/%EB%8B%A5%ED%84%B0%EC%BA%90%EC%8B%9C%20%EB%B0%B0%EB%84%88(%EB%B0%B1%ED%84%B0).png">
+    /* 개별 카드 스타일 */
+    .glass-card { background-color: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); transform: translateZ(0); transition: background 0.3s, border 0.3s, box-shadow 0.3s; }
+    .glass-card:hover { background-color: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2); }
+  </style>
 </head>
 <body class="p-4 sm:p-6 md:p-8">
 
-    <div class="w-full max-w-4xl mx-auto mb-8 mt-8 glass-container rounded-3xl p-6 md:p-10">
-        <header class="text-center mb-8 md:mb-12">
-            <p class="text-base font-semibold text-gray-300 uppercase tracking-wider mb-1">병의원 경영을 위한</p>
-            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-2" style="text-shadow: 0 0 10px rgba(0,188,212,0.5);">
-                <span class="text-cyan-400">Dr. CA$H</span> <span class="font-light">서비스</span>
-            </h1>
-            <p class="text-gray-300 text-lg">필요한 서비스로 바로 이동하세요.</p>
-        </header>
+  <!-- ===== 메인 컨테이너 ===== -->
+  <div class="w-full max-w-4xl mx-auto mb-8 mt-8 glass-container rounded-3xl p-6 md:p-10">
 
-        <!-- 바로가기 링크 컨테이너 (모바일: 세로 2그룹, 데스크톱: 가로 2열) --><div class="flex flex-col md:flex-row gap-4">
+    <!-- 헤더 영역 -->
+    <header class="text-center mb-8 md:mb-12">
+      <p class="text-base font-semibold text-gray-300 uppercase tracking-wider mb-1">병의원 경영을 위한</p>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-2" style="text-shadow:0 0 10px rgba(0,188,212,0.5);">
+        <span class="text-cyan-400">Dr. CA$H</span> <span class="font-light">서비스</span>
+      </h1>
+      <p class="text-gray-300 text-lg">필요한 서비스로 바로 이동하세요.</p>
+    </header>
 
-            <!-- 왼쪽 열 항목 컨테이너 --><div id="left-column" class="flex flex-col gap-4 w-full md:w-1/2">
-                <!-- 항목들은 스크립트로 채워집니다 --></div>
+    <!-- 링크 카드 2열 구조 -->
+    <div class="flex flex-col md:flex-row gap-4">
+      <div id="left-column" class="flex flex-col gap-4 w-full md:w-1/2"></div>
+      <div id="right-column" class="flex flex-col gap-4 w-full md:w-1/2"></div>
+    </div>
 
-            <!-- 오른쪽 열 항목 컨테이너 --><div id="right-column" class="flex flex-col gap-4 w-full md:w-1/2">
-                <!-- 항목들은 스크립트로 채워집니다 --></div>
+    <!-- 푸터 -->
+    <footer class="w-full text-center mt-8 pt-4 border-t border-white/10">
+      <p class="text-sm text-gray-400">© 2024 한국병의원데이터. All Rights Reserved</p>
+    </footer>
+  </div>
 
-        </div>
-        <!-- 카드 컴포넌트 정의 및 데이터 로딩 스크립트 --><script>
-            /**
-             * 링크 카드를 생성하고 반환하는 함수
-             * @param {string} title - 카드 메인 제목
-             * @param {string} href - 링크 URL
-             * @param {string} description - 카드 하단 설명
-             * @returns {string} HTML 문자열
-             */
-            function createCard(title, href = '#', description = '') {
-                return `
-                    <a href="${href}" target="_blank" rel="noopener noreferrer"
-                       class="group block p-5 md:p-6 glass-card rounded-xl transition duration-300 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:shadow-cyan-500/20">
-                        <div class="flex items-center mb-3">
-                            <!-- Dr. CA$H 로고 D-Icon --><div class="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-cyan-500">
-                                <span class="text-xs font-black text-gray-900">D</span>
-                            </div>
-                            <span class="text-gray-200 text-sm font-semibold opacity-80">Dr. CA$H</span>
-                        </div>
-                        <!-- 메인 링크 텍스트 --><p class="text-xl text-white font-bold tracking-tight group-hover:text-cyan-400 transition-colors mb-2">
-                            ${title}
-                        </p>
-                        <!-- 설명 텍스트 -->${description ? `<p class="text-sm text-gray-400">${description}</p>` : ''}
-                    </a>
-                `;
-            }
+  <!-- ===== 스크립트 영역 ===== -->
+  <script>
+    // 엘리먼트 생성 헬퍼 함수
+    const el = (tag, cls, text) => {
+      const node = document.createElement(tag);
+      if (cls) node.className = cls;
+      if (text) node.textContent = text;
+      return node;
+    };
 
-            // 페이지 로드 시 데이터 배열을 정의하고 카드를 생성/삽입
-            window.onload = function() {
-                // 1. 왼쪽 열 항목 (모바일에서 먼저 표시)
-                const leftCards = [
-                    { title: '병의원 데이터분석 플랫폼 닥터캐시', href: 'https://www.kdrcash.kr/', description: '객관적인 병의원 비교·분석 서비스를 이용해 보세요.' },
-                    { title: '닥터캐시 다운로드', href: 'https://www.kdrcash.kr/download', description: '닥터캐시 전용 앱을 통해 병원정보를 간편하게 관리하세요.' },
-                    { title: '개원관련 필수자료 모음', href: 'https://www.kdrcash.kr/survey', description: '개원관련 All-in-One 자료를 확인해 보세요.' },
-                    { title: '자금출처 계산기', href: '#', description: '자금출처 금액을 손쉽게 계산해 보세요.' },
-                ];
+    // 단일 카드 생성 함수
+    function createCardEl(title, href = '#', description = '') {
+      const a = el('a', 'group block p-5 md:p-6 glass-card rounded-xl hover:scale-[1.01] hover:shadow-lg hover:shadow-cyan-500/20');
+      a.href = href;
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.setAttribute('aria-label', title);
 
-                // 2. 오른쪽 열 항목 (모바일에서 그 다음 표시)
-                const rightCards = [
-                    { title: '원클릭 세금환급', href: 'https://js.etaxmate.co.kr/index_default?USERID=retaxcorporation', description: '숨어있는 환급액을 1분 만에 조회하고 신청하세요.' },
-                    { title: '네트급여 계산기', href: 'https://kdrcash.github.io/pay1/', description: '세후 급여를 기준으로 역산하여 세전 급여를 계산해 보세요.' },
-                    { title: '최저임금 계산기', href: 'https://kdrcash.github.io/pay2/', description: '근무시간을 입력하여 최저임금을 계산해 보세요.' },
-                    { title: '일할급여 계산기', href: 'https://kdrcash.github.io/pay3/', description: '근무 일수만큼의 급여를 일할 계산할 수 있습니다.' },
-                ];
+      const top = el('div', 'flex items-center mb-3');
+      const logo = el('div', 'w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-cyan-500');
+      logo.appendChild(el('span', 'text-xs font-black text-gray-900', 'D'));
+      const brand = el('span', 'text-gray-200 text-sm font-semibold opacity-80', 'Dr. CA$H');
+      top.append(logo, brand);
 
-                const leftColumn = document.getElementById('left-column');
-                const rightColumn = document.getElementById('right-column');
+      const titleEl = el('p', 'text-xl text-white font-bold tracking-tight group-hover:text-cyan-400 transition-colors mb-2', title);
+      a.append(top, titleEl);
 
-                if (leftColumn && rightColumn) {
-                    leftCards.forEach(card => {
-                        leftColumn.insertAdjacentHTML('beforeend', createCard(card.title, card.href, card.description));
-                    });
-                    rightCards.forEach(card => {
-                        rightColumn.insertAdjacentHTML('beforeend', createCard(card.title, card.href, card.description));
-                    });
-                }
-            };
-        </script>
-        
-        <!-- 푸터 영역 (glass-container 내부) --><footer class="w-full text-center mt-8 pt-4 border-t border-white/10">
-            <p class="text-sm text-gray-400">© 2024 한국병의원데이터. All Rights Reserved</p>
-        </footer>
-        <!-- /푸터 영역 --></div>
-    
+      if (description) a.appendChild(el('p', 'text-sm text-gray-400', description));
+
+      return a;
+    }
+
+    // 카드 데이터 정의 (왼쪽/오른쪽)
+    const leftCards = [
+      { title: '병의원 데이터분석 플랫폼 닥터캐시', href: 'https://www.kdrcash.kr/', description: '객관적인 병의원 비교·분석 서비스를 이용해 보세요.' },
+      { title: '닥터캐시 다운로드', href: 'https://www.kdrcash.kr/download', description: '닥터캐시 전용 앱을 통해 병원정보를 간편하게 관리하세요.' },
+      { title: '개원관련 필수자료 모음', href: 'https://www.kdrcash.kr/survey', description: '개원관련 All-in-One 자료를 확인해 보세요.' },
+      { title: '자금출처 계산기', href: '#', description: '자금출처 금액을 손쉽게 계산해 보세요.' }
+    ];
+
+    const rightCards = [
+      { title: '원클릭 세금환급', href: 'https://js.etaxmate.co.kr/index_default?USERID=retaxcorporation', description: '숨어있는 환급액을 1분 만에 조회하고 신청하세요.' },
+      { title: '네트급여 계산기', href: 'https://kdrcash.github.io/pay1/', description: '세후 급여를 기준으로 역산하여 세전 급여를 계산해 보세요.' },
+      { title: '최저임금 계산기', href: 'https://kdrcash.github.io/pay2/', description: '근무시간을 입력하여 최저임금을 계산해 보세요.' },
+      { title: '일할급여 계산기', href: 'https://kdrcash.github.io/pay3/', description: '근무 일수만큼의 급여를 일할 계산할 수 있습니다.' }
+    ];
+
+    // DOM 로드 후 카드 렌더링
+    document.addEventListener('DOMContentLoaded', () => {
+      const leftColumn = document.getElementById('left-column');
+      const rightColumn = document.getElementById('right-column');
+      if (!leftColumn || !rightColumn) return;
+
+      const lf = document.createDocumentFragment();
+      const rf = document.createDocumentFragment();
+      leftCards.forEach(c => lf.appendChild(createCardEl(c.title, c.href, c.description)));
+      rightCards.forEach(c => rf.appendChild(createCardEl(c.title, c.href, c.description)));
+
+      leftColumn.appendChild(lf);
+      rightColumn.appendChild(rf);
+    });
+  </script>
 </body>
 </html>
