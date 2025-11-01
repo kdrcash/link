@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. CA$H 링크 대시보드</title>
+    <title>Dr. CA$H 서비스 대시보드</title>
     <!-- Tailwind CSS CDN 로드 --><script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 기본 폰트 설정 (Inter 폰트 사용) */
+        /* 기본 폰트 설정 */
         :root {
             font-family: 'Inter', sans-serif;
         }
 
-        /* Glssmorphism을 위한 배경 애니메이션 */
+        /* 배경 애니메이션 스타일 */
         body {
-            background: linear-gradient(135deg, #1e2a47, #0f1628, #1e2a47); /* 진한 파란색 계열 그라데이션 */
+            background: linear-gradient(135deg, #1e2a47, #0f1628, #1e2a47);
             background-size: 400% 400%;
             animation: gradientAnimation 15s ease infinite;
-            display: flex; /* Flexbox 추가 */
-            flex-direction: column; /* 세로 방향으로 정렬 */
-            min-height: 100vh; /* 최소 높이 설정 */
-            color: #e2e8f0; /* 기본 텍스트 색상 밝게 */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #e2e8f0;
         }
 
         @keyframes gradientAnimation {
@@ -28,26 +28,42 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* 카드 및 컨테이너의 블러 효과를 위한 사용자 정의 클래스 */
+        /* 글래스모피즘 컨테이너 스타일 */
         .glass-container {
-            background-color: rgba(255, 255, 255, 0.08); /* 반투명 흰색 */
-            backdrop-filter: blur(20px); /* 강한 블러 */
-            border: 1px solid rgba(255, 255, 255, 0.15); /* 얇은 테두리 */
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* 부드러운 그림자 */
+            background-color: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
         }
 
+        /* 글래스모피즘 카드 스타일 */
         .glass-card {
-            background-color: rgba(255, 255, 255, 0.05); /* 카드 배경은 더 투명하게 */
-            backdrop-filter: blur(10px); /* 카드 블러 */
+            background-color: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .glass-card:hover {
-            background-color: rgba(255, 255, 255, 0.08); /* 호버 시 약간 밝게 */
+            background-color: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
         }
     </style>
+
+    <!-- Open Graph (SNS 공유 메타태그) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kdrcash.github.io/link/">
+<meta property="og:title" content="Dr. CA$H 서비스 대시보드">
+<meta property="og:description" content="필요한 서비스로 바로 이동하세요">
+<meta property="og:image" content="https://raw.githubusercontent.com/kdrcash/paycal1/refs/heads/main/%EB%8B%A5%ED%84%B0%EC%BA%90%EC%8B%9C%20%EB%B0%B0%EB%84%88(%EB%B0%B1%ED%84%B0).png">
+<meta property="og:site_name" content="Dr.CASH Dashboard">
+<meta property="og:locale" content="ko_KR">
+
+<!-- Twitter (X) 전용 메타태그 -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dr. CA$H 서비스 대시보드">
+<meta name="twitter:description" content="필요한 서비스로 바로 이동하세요">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/kdrcash/paycal1/refs/heads/main/%EB%8B%A5%ED%84%B0%EC%BA%90%EC%8B%9C%20%EB%B0%B0%EB%84%88(%EB%B0%B1%ED%84%B0).png">
 </head>
 <body class="p-4 sm:p-6 md:p-8">
 
@@ -62,43 +78,43 @@
 
         <!-- 바로가기 링크 컨테이너 (모바일: 세로 2그룹, 데스크톱: 가로 2열) --><div class="flex flex-col md:flex-row gap-4">
 
-            <!-- 왼쪽 열 항목들이 들어갈 컨테이너 --><div id="left-column" class="flex flex-col gap-4 w-full md:w-1/2">
+            <!-- 왼쪽 열 항목 컨테이너 --><div id="left-column" class="flex flex-col gap-4 w-full md:w-1/2">
                 <!-- 항목들은 스크립트로 채워집니다 --></div>
 
-            <!-- 오른쪽 열 항목들이 들어갈 컨테이너 --><div id="right-column" class="flex flex-col gap-4 w-full md:w-1/2">
+            <!-- 오른쪽 열 항목 컨테이너 --><div id="right-column" class="flex flex-col gap-4 w-full md:w-1/2">
                 <!-- 항목들은 스크립트로 채워집니다 --></div>
 
         </div>
-        <!-- /바로가기 링크 컨테이너 --><!-- 카드 컴포넌트 정의 (재사용을 위해 함수로 구현) --><script>
+        <!-- 카드 컴포넌트 정의 및 데이터 로딩 스크립트 --><script>
             /**
              * 링크 카드를 생성하고 반환하는 함수
-             * @param {string} title - 카드에 표시될 메인 제목
-             * @param {string} href - 링크 URL (예: '#')
-             * @param {string} description - 카드 하단에 표시될 한 줄 설명
+             * @param {string} title - 카드 메인 제목
+             * @param {string} href - 링크 URL
+             * @param {string} description - 카드 하단 설명
              * @returns {string} HTML 문자열
              */
             function createCard(title, href = '#', description = '') {
-                // target="_blank"와 rel="noopener noreferrer" 추가
                 return `
                     <a href="${href}" target="_blank" rel="noopener noreferrer"
                        class="group block p-5 md:p-6 glass-card rounded-xl transition duration-300 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:shadow-cyan-500/20">
                         <div class="flex items-center mb-3">
-                            <!-- Dr. CA$H 로고 Placeholder: D-Icon in Cyan Circle --><div class="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-cyan-500">
+                            <!-- Dr. CA$H 로고 D-Icon -->
+                            <div class="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-cyan-500">
                                 <span class="text-xs font-black text-gray-900">D</span>
                             </div>
                             <span class="text-gray-200 text-sm font-semibold opacity-80">Dr. CA$H</span>
                         </div>
-                        <!-- 메인 링크 텍스트: Hover color changed to accent cyan --><p class="text-xl text-white font-bold tracking-tight group-hover:text-cyan-400 transition-colors mb-2">
+                        <!-- 메인 링크 텍스트 --><p class="text-xl text-white font-bold tracking-tight group-hover:text-cyan-400 transition-colors mb-2">
                             ${title}
                         </p>
-                        <!-- 설명 텍스트 추가 -->${description ? `<p class="text-sm text-gray-400">${description}</p>` : ''}
+                        <!-- 설명 텍스트 -->${description ? `<p class="text-sm text-gray-400">${description}</p>` : ''}
                     </a>
                 `;
             }
 
-            // 페이지 로드 시 카드를 생성하고 삽입하는 스크립트
+            // 페이지 로드 시 데이터 배열을 정의하고 카드를 생성/삽입
             window.onload = function() {
-                // 1. 왼쪽 열 항목들 (모바일에서 먼저 표시될 항목들)
+                // 1. 왼쪽 열 항목 (모바일에서 먼저 표시)
                 const leftCards = [
                     { title: '병의원 데이터분석 플랫폼 닥터캐시', href: 'https://www.kdrcash.kr/', description: '객관적인 병의원 비교·분석 서비스를 이용해 보세요.' },
                     { title: '닥터캐시 다운로드', href: 'https://www.kdrcash.kr/download', description: '닥터캐시 전용 앱을 통해 병원정보를 간편하게 관리하세요.' },
@@ -106,7 +122,7 @@
                     { title: '자금출처 계산기', href: '#', description: '자금출처 금액을 손쉽게 계산해 보세요.' },
                 ];
 
-                // 2. 오른쪽 열 항목들 (모바일에서 그 다음 표시될 항목들)
+                // 2. 오른쪽 열 항목 (모바일에서 그 다음 표시)
                 const rightCards = [
                     { title: '원클릭 세금환급', href: 'https://js.etaxmate.co.kr/index_default?USERID=retaxcorporation', description: '숨어있는 환급액을 1분 만에 조회하고 신청하세요.' },
                     { title: '네트급여 계산기', href: 'https://kdrcash.github.io/pay1/', description: '세후 급여를 기준으로 역산하여 세전 급여를 계산해 보세요.' },
@@ -128,7 +144,7 @@
             };
         </script>
         
-        <!-- 푸터 영역을 glass-container 내부로 이동시키고 구분선 추가 -->
+        <!-- 푸터 영역 (glass-container 내부) -->
         <footer class="w-full text-center mt-8 pt-4 border-t border-white/10">
             <p class="text-sm text-gray-400">© 2024 한국병의원데이터. All Rights Reserved</p>
         </footer>
