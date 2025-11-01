@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dr. CA$H 바로가기 사이트</title>
+    <title>Dr. CA$H 바로가기 대시보드</title>
     <!-- Tailwind CSS CDN 로드 --><script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* 기본 폰트 설정 (Inter 폰트 사용) */
@@ -78,8 +78,9 @@
              * @returns {string} HTML 문자열
              */
             function createCard(title, href = '#', description = '') {
+                // target="_blank"와 rel="noopener noreferrer" 추가
                 return `
-                    <a href="${href}"
+                    <a href="${href}" target="_blank" rel="noopener noreferrer"
                        class="group block p-5 md:p-6 glass-card rounded-xl transition duration-300 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:shadow-cyan-500/20">
                         <div class="flex items-center mb-3">
                             <!-- Dr. CA$H 로고 Placeholder: D-Icon in Cyan Circle --><div class="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-cyan-500">
