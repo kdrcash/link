@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. CA$H 바로가기 사이트</title>
+    <!-- Tailwind CSS CDN 로드 --><script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 기본 폰트 설정 (Inter 폰트 사용) */
+        :root {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Glssmorphism을 위한 배경 애니메이션 */
+        body {
+            background: linear-gradient(135deg, #1e2a47, #0f1628, #1e2a47); /* 진한 파란색 계열 그라데이션 */
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            display: flex; /* Flexbox 추가 */
+            flex-direction: column; /* 세로 방향으로 정렬 */
+            min-height: 100vh; /* 최소 높이 설정 */
+            color: #e2e8f0; /* 기본 텍스트 색상 밝게 */
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 카드 및 컨테이너의 블러 효과를 위한 사용자 정의 클래스 */
+        .glass-container {
+            background-color: rgba(255, 255, 255, 0.08); /* 반투명 흰색 */
+            backdrop-filter: blur(20px); /* 강한 블러 */
+            border: 1px solid rgba(255, 255, 255, 0.15); /* 얇은 테두리 */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* 부드러운 그림자 */
+        }
+
+        .glass-card {
+            background-color: rgba(255, 255, 255, 0.05); /* 카드 배경은 더 투명하게 */
+            backdrop-filter: blur(10px); /* 카드 블러 */
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-card:hover {
+            background-color: rgba(255, 255, 255, 0.08); /* 호버 시 약간 밝게 */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+
+    <div class="w-full max-w-4xl mx-auto mb-8 mt-8 glass-container rounded-3xl p-6 md:p-10">
+        <header class="text-center mb-8 md:mb-12">
+            <p class="text-base font-semibold text-gray-300 uppercase tracking-wider mb-1">병의원 경영을 위한</p>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-2" style="text-shadow: 0 0 10px rgba(0,188,212,0.5);">
+                <span class="text-cyan-400">Dr. CA$H</span> <span class="font-light">서비스</span>
+            </h1>
+            <p class="text-gray-300 text-lg">필요한 서비스로 바로 이동하세요.</p>
+        </header>
+
+        <!-- 바로가기 링크 컨테이너 (모바일: 세로 2그룹, 데스크톱: 가로 2열) --><div class="flex flex-col md:flex-row gap-4">
+
+            <!-- 왼쪽 열 항목들이 들어갈 컨테이너 --><div id="left-column" class="flex flex-col gap-4 w-full md:w-1/2">
+                <!-- 항목들은 스크립트로 채워집니다 --></div>
+
+            <!-- 오른쪽 열 항목들이 들어갈 컨테이너 --><div id="right-column" class="flex flex-col gap-4 w-full md:w-1/2">
+                <!-- 항목들은 스크립트로 채워집니다 --></div>
+
+        </div>
+        <!-- /바로가기 링크 컨테이너 --><!-- 카드 컴포넌트 정의 (재사용을 위해 함수로 구현) --><script>
+            /**
+             * 링크 카드를 생성하고 반환하는 함수
+             * @param {string} title - 카드에 표시될 메인 제목
+             * @param {string} href - 링크 URL (예: '#')
+             * @param {string} description - 카드 하단에 표시될 한 줄 설명
+             * @returns {string} HTML 문자열
+             */
+            function createCard(title, href = '#', description = '') {
+                return `
+                    <a href="${href}"
+                       class="group block p-5 md:p-6 glass-card rounded-xl transition duration-300 ease-in-out hover:scale-[1.01] hover:shadow-lg hover:shadow-cyan-500/20">
+                        <div class="flex items-center mb-3">
+                            <!-- Dr. CA$H 로고 Placeholder: D-Icon in Cyan Circle --><div class="w-6 h-6 mr-2 flex items-center justify-center rounded-full bg-cyan-500">
+                                <span class="text-xs font-black text-gray-900">D</span>
+                            </div>
+                            <span class="text-gray-200 text-sm font-semibold opacity-80">Dr. CA$H</span>
+                        </div>
+                        <!-- 메인 링크 텍스트: Hover color changed to accent cyan --><p class="text-xl text-white font-bold tracking-tight group-hover:text-cyan-400 transition-colors mb-2">
+                            ${title}
+                        </p>
+                        <!-- 설명 텍스트 추가 -->${description ? `<p class="text-sm text-gray-400">${description}</p>` : ''}
+                    </a>
+                `;
+            }
+
+            // 페이지 로드 시 카드를 생성하고 삽입하는 스크립트
+            window.onload = function() {
+                // 1. 왼쪽 열 항목들 (모바일에서 먼저 표시될 항목들)
+                const leftCards = [
+                    { title: '병의원 데이터분석 플랫폼 닥터캐시', href: 'https://www.kdrcash.kr/', description: '객관적인 병의원 비교·분석 서비스를 이용해 보세요.' },
+                    { title: '닥터캐시 다운로드', href: 'https://www.kdrcash.kr/download', description: '닥터캐시 전용 앱을 통해 병원정보를 간편하게 관리하세요.' },
+                    { title: '개원관련 필수자료 모음', href: 'https://www.kdrcash.kr/survey', description: '개원관련 All-in-One 자료를 확인해 보세요.' },
+                    { title: '자금출처 계산기', href: '#', description: '자금출처 금액을 손쉽게 계산해 보세요.' },
+                ];
+
+                // 2. 오른쪽 열 항목들 (모바일에서 그 다음 표시될 항목들)
+                const rightCards = [
+                    { title: '원클릭 세금환급', href: 'https://js.etaxmate.co.kr/index_default?USERID=retaxcorporation', description: '숨어있는 환급액을 1분 만에 조회하고 신청하세요.' },
+                    { title: '네트급여 계산기', href: 'https://kdrcash.github.io/pay1/', description: '세후 급여를 기준으로 역산하여 세전 급여를 계산해 보세요.' },
+                    { title: '최저임금 계산기', href: 'https://kdrcash.github.io/pay2/', description: '근무시간을 입력하여 최저임금을 계산해 보세요.' },
+                    { title: '일할급여 계산기', href: 'https://kdrcash.github.io/pay3/', description: '근무 일수만큼의 급여를 일할 계산할 수 있습니다.' },
+                ];
+
+                const leftColumn = document.getElementById('left-column');
+                const rightColumn = document.getElementById('right-column');
+
+                if (leftColumn && rightColumn) {
+                    leftCards.forEach(card => {
+                        leftColumn.insertAdjacentHTML('beforeend', createCard(card.title, card.href, card.description));
+                    });
+                    rightCards.forEach(card => {
+                        rightColumn.insertAdjacentHTML('beforeend', createCard(card.title, card.href, card.description));
+                    });
+                }
+            };
+        </script>
+        
+        <!-- 푸터 영역을 glass-container 내부로 이동시키고 구분선 추가 -->
+        <footer class="w-full text-center mt-8 pt-4 border-t border-white/10">
+            <p class="text-sm text-gray-400">© 2024 한국병의원데이터. All Rights Reserved</p>
+        </footer>
+        <!-- /푸터 영역 -->
+
+    </div>
+    
+</body>
+</html>
